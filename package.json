@@ -1,0 +1,33 @@
+{
+  "name": "@starbase/server",
+  "version": "0.0.1",
+  "description": "Starbase Channels Server",
+  "main": "index.js",
+  "dependencies": {
+    "@starbase/therules": "latest",
+    "@starbase/defacto": "latest"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/starbasealpha/server.git"
+  },
+  "keywords": [
+    "Starbase",
+    "Server",
+    "Express",
+    "Channels",
+    "API",
+    "rules",
+    "engine"
+  ],
+  "author": "Mike Fuller",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/starbasealpha/server/issues"
+  },
+  "homepage": "https://github.com/starbasealpha/server#readme"
+}
