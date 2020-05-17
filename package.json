@@ -1,14 +1,11 @@
 {
   "name": "@starbase/server",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Starbase Channels Server",
   "main": "index.js",
   "dependencies": {
     "@starbase/therules": "latest",
-    "compression": "latest",
-    "cors": "latest",
-    "express": "latest",
-    "helmet": "latest"
+    "express": "latest"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
