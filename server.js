@@ -2,11 +2,8 @@
   
 const theRules = require('@starbase/therules');
 const express = require('express');
-const compression = require('compression');
-const helmet = require('helmet');
-const cors = require('cors');
 
-function Server(port=null,options={"staticPath":null,"jsonLimit":1024*1024*1,"maxAge":1000 * 10,"cors":null}) {
+function Server(port=null,options={"json":{"limit":1024 * 1024 * 5}, "urlencode":{"extended":true}, "cors":null}) {
 
   if (!port || typeof port !== 'number') {
     let err = new Error('Missing port!');
@@ -16,9 +13,6 @@ function Server(port=null,options={"staticPath":null,"jsonLimit":1024*1024*1,"ma
 
   const app = express();
 
-  app.use(compression());
-  app.use(helmet());
-
   if (options.cors && typeof options.cors === 'object') {
     app.use(cors(options.cors));
   }
@@ -26,9 +20,8 @@ function Server(port=null,options={"staticPath":null,"jsonLimit":1024*1024*1,"ma
     app.use(express.static(options.staticPath,{"maxAge":(options.maxAge||1000 * 10)}));
   }
 
-  app.use(express.json({
-    "limit":(options.jsonLimit || 1024 * 1024 * 1)
-  }));
+  app.use(express.json(options.json||{"limit":1024 * 1024 * 5}));
+  app.use(express.urlencoded(options.urlencoded||{"extended":true}));
 
   app.use((err,req,res,next)=>{
     res.status(400).json({"code":400,"message":err.message||err.toString()});
@@ -66,7 +59,7 @@ function Server(port=null,options={"staticPath":null,"jsonLimit":1024*1024*1,"ma
 
   };
 
-  return {"server":server, "app":app, "api":api};
+  return {express, server, app, api};
 
 }
 
